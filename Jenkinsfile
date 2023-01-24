@@ -9,7 +9,7 @@ pipeline {
 				}
 			}
 			steps {
-				git 'https://github.com/Skyler000/Jenkins-angular-my-app.git'
+				git url: 'https://github.com/your-repository-url.git', branch: 'master'
 				sh 'npm run build'
 			}
 		}
