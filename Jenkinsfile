@@ -6,6 +6,8 @@ pipeline {
 				docker {
 					image 'node:18.10-alpine'
 					reuseNode true
+				}
+			}
 			steps {
 				git 'https://github.com/Skyler000/Jenkins-angular-my-app.git'
 				sh 'npm run build'
@@ -16,9 +18,9 @@ pipeline {
 		 		script { 
 		 			dockerImage = docker.build("my-app:${env.BUILD_ID}")
 		 		}
-
 			}
 	 	}
+	 }
 	 post { 
 		always {
 			echo 'Im awesome . I run always'
@@ -31,3 +33,4 @@ pipeline {
 		}
 	}
 	
+}
