@@ -1,5 +1,8 @@
 pipeline { 
 	agent any
+	environment {
+		PATH={'/home/jenkins'}
+	}
 	stages {
 		stage('Build') {
 			steps {
