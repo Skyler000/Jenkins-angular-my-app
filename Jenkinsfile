@@ -2,18 +2,8 @@ pipeline {
 	agent any
 	stages {
 		stage('Build') {
-			// agent {
-			// 	docker {
-			// 		image 'node:18.10-alpine'
-			// 		reuseNode true
-			// 	}
-			// }
-		// 	steps {
-		// 		git url: 'https://github.com/your-repository-url.git', branch: 'master'
-		// 		sh 'npm run build'
-		// 	}
-		sh 'docker rmi -f my-app:* || true'
-		sh 'docker build -t my-app:${env.BUILD_ID} -f ./Dockerfile .'
+			 sh 'docker rmi -f my-app:* || true'
+			 sh 'docker build -t my-app:${env.BUILD_ID} -f ./Dockerfile .'
 		}
 		stage('Deploy') {
 			 sh 'docker stop my-app || true'
