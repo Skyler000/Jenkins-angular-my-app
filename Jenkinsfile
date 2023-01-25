@@ -11,16 +11,16 @@ pipeline {
              sh 'docker run --name my-app -p 8600:80 -d my-app:${env.BUILD_ID}'
 		}
 	 }
-	 post { 
-		always {
-			echo 'Im awesome . I run always'
-		}
-		success {
-			echo 'I run when you successfull'
-		}
-		failure {
-			echo ' i run when you fail done'
-		}
-	}
+	//  post { 
+	// 	always {
+	// 		echo 'Im awesome . I run always'
+	// 	}
+	// 	success {
+	// 		echo 'I run when you successfull'
+	// 	}
+	// 	failure {
+	// 		echo ' i run when you fail done'
+	// 	}
+	// }
 	
 }
