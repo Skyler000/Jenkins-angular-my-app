@@ -3,15 +3,15 @@ pipeline {
 	stages {
 		stage('Build') {
 			steps {
-			     sh 'docker rmi -f my-app:* || true'
-			     sh 'docker build -t my-app:${env.BUILD_ID} .'
+			     sh 'docker rmi -f my-app:v1 || true'
+			     sh 'docker build -t my-app:v1 .'
 			}
 		}
 		stage('Deploy') {
 			steps {
 				 sh 'docker stop my-app || true'
                  sh 'docker rm my-app || true'
-                 sh 'docker run --name my-app -p 8600:80 -d my-app:${env.BUILD_ID}'
+                 sh 'docker run --name my-app -p 8600:80 -d my-app:v1'
 			}
 			 
 		}
