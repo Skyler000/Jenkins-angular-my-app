@@ -1,6 +1,6 @@
 ### STAGE 1: Build ###
 FROM node:18.10-alpine AS build
-WORKDIR /usr/src/app
+WORKDIR /var/lib/jenkins
 #COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
