@@ -1,8 +1,8 @@
 pipeline { 
 	agent any
-	// environment {
-    //      PATH='/home/jenkins'
-	// } 
+	environment {
+         PATH='/home/jenkins'
+	} 
 	stages {
 		// agent {
         //     docker {
