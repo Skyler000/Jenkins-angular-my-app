@@ -4,7 +4,7 @@ pipeline {
          PATH='/usr/local/bin:/usr/bin:/bin'
 	} 
 	stages {
-		// stage('Build') {
+		stage('Build') {
 		// 	agent {
         //         docker {
         //             image 'node:18.10-alpine'
