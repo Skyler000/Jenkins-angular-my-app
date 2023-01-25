@@ -1,17 +1,20 @@
 pipeline { 
 	agent any
+	environment {
+         PATH='/usr/local/bin:/usr/bin:/bin'
+	} 
 	stages {
-		stage('Build') {
-			agent {
-                docker {
-                    image 'node:18.10-alpine'
-                    args '-v $HOME:/home/jenkins'
-                }
-            }
+		// stage('Build') {
+		// 	agent {
+        //         docker {
+        //             image 'node:18.10-alpine'
+        //             args '-v $HOME:/home/jenkins'
+        //         }
+        //     }
 			steps {
-			    //  sh 'docker rmi -f my-app:v1 || true'
-			    //  sh 'docker build -t my-app:v1 .'
-				sh 'node -v'
+			    sh 'docker rmi -f my-app:v1 || true'
+			    sh 'docker build -t my-app:v1 .'
+				// sh 'node -v'
 			}
 		}
 		// stage('Deploy') {
