@@ -2,10 +2,10 @@ pipeline {
 	agent any
 	stages {
 		stage('Build') {
-			 agent {
-                 docker {
-                     image 'node:18.10-alpine'
-                     args '-v $HOME:/home/jenkins'
+			agent {
+                docker {
+                    image 'node:18.10-alpine'
+                    args '-v $HOME:/home/jenkins'
                 }
             }
 			steps {
