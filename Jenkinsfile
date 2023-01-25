@@ -12,7 +12,7 @@ pipeline {
         //         }
         //     }
 			steps {
-			    sh 'docker rmi -f my-app:v1 || true'
+			    //sh 'docker rmi -f my-app:v1 || true'
 			    sh 'docker build -t my-app:v1 .'
 			}
 		}
