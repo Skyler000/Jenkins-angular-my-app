@@ -1,14 +1,20 @@
 pipeline { 
 	agent any
 	environment {
-		PATH={'/home/jenkins'}
-	}
+         PATH='/home/jenkins'
+	} 
 	stages {
+		// agent {
+        //     docker {
+        //         image 'node:18.10-alpine'
+        //          args '-v $HOME:/home/jenkins'
+        //         }
+        //     }
 		stage('Build') {
+		
 			steps {
-			    sh 'docker rmi -f my-app:v1 || true'
+			    //sh 'docker rmi -f my-app:v1 || true'
 			    sh 'docker build -t my-app:v1 .'
-				// sh 'node -v'
 			}
 		}
 		// stage('Deploy') {
@@ -19,7 +25,7 @@ pipeline {
 		// 	}
 			 
 		// }
-	}
+	 }
 	 post { 
 		always {
 			echo 'Im awesome . I run always'
