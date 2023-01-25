@@ -1,12 +1,11 @@
 pipeline { 
-	agent any
-	stages {
-		agent {
-            docker {
-                image 'node:18.10-alpine'
-    	        args '-v $HOME:/home/jenkins'
-            }
+	agent {
+    	docker {
+            image 'node:18.10-alpine'
+	        args '-v $HOME:/home/jenkins'
         }
+    }
+	stages {
 		stage('Build') {
 			steps {
 			    //sh 'docker rmi -f my-app:v1 || true'
@@ -22,7 +21,7 @@ pipeline {
 		// 	}
 			 
 		// }
-	 }
+	}
 	 post { 
 		always {
 			echo 'Im awesome . I run always'
