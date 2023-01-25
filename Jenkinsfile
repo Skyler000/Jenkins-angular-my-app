@@ -2,24 +2,24 @@ pipeline {
 	agent any
 	stages {
 		stage('Build'){
-			agent {
-				docker {
-					image 'node:18.10-alpine'
-					reuseNode true
-				}
-			}
-			steps {
-				git url: 'https://github.com/your-repository-url.git', branch: 'master'
-				sh 'npm run build'
-			}
+			// agent {
+			// 	docker {
+			// 		image 'node:18.10-alpine'
+			// 		reuseNode true
+			// 	}
+			// }
+		// 	steps {
+		// 		git url: 'https://github.com/your-repository-url.git', branch: 'master'
+		// 		sh 'npm run build'
+		// 	}
+		sh 'docker rmi -f my-app:* || true'
+		sh 'docker build -t flutter-web-app:${env.BUILD_ID} -f ./Dockerfile .'
 		}
-		stage('Build Docker Image') {
-		 	steps {
-		 		script { 
-		 			dockerImage = docker.build("my-app:${env.BUILD_ID}")
-		 		}
-			}
-	 	}
+		stage('Deploy') {
+			 sh 'docker stop my-app || true'
+             sh 'docker rm my-app || true'
+             sh 'docker run --name my-app -p 8600:80 -d flutter-web-app:${env.BUILD_ID}'
+		}
 	 }
 	 post { 
 		always {
