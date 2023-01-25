@@ -1,7 +1,7 @@
 pipeline { 
 	agent any
 	environment {
-         PATH='/var/lib/jenkins'
+         PATH='/usr/local/bin:/usr/bin:/bin'
 	} 
 	stages {
 		stage('Build') {
@@ -12,7 +12,7 @@ pipeline {
         //         }
         //     }
 			steps {
-			    //sh 'docker rmi -f my-app:v1 || true'
+			    sh 'docker rmi -f my-app:v1 || true'
 			    sh 'docker build -t my-app:v1 .'
 			}
 		}
