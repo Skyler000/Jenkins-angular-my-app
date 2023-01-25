@@ -4,7 +4,7 @@ pipeline {
 		stage('Build') {
 			steps {
 			     sh 'docker rmi -f my-app:* || true'
-			     sh 'docker build -t my-app:${env.BUILD_ID} -f ./Dockerfile .'
+			     sh 'docker build -t my-app:${env.BUILD_ID} .'
 			}
 		}
 		stage('Deploy') {
