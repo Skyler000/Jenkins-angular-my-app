@@ -1,17 +1,13 @@
 pipeline { 
-	agent {
-		docker { 
-			image 'node:16.13.1-alpine'
-		}
-	} 
+	agent none
 	stages {
 		stage('NPM install') {
-            // agent {
-            //     docker {
-            //         image 'node:18.10-alpine'
-            //         // args '-v $HOME:/home/jenkins'
-            //     }
-            // }
+            agent {
+                docker {
+                    image 'node:18.10-alpine'
+                    args '-v $HOME:/home/jenkins'
+                }
+            }
 			steps {
                 sh 'npm install'
                 sh 'npm install -g @angular/cli@1.0.2'
