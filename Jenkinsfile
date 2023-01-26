@@ -1,16 +1,16 @@
 pipeline { 
-	agent none
+	agent {
+            docker {
+                image 'node:18.10-alpine'
+            }
+    }
     environment { 
 		dockerHome = tool 'MyDocker'
 		PATH = "$dockerHome/bin:$PATH"
 	}
 	stages {
 		stage('NPM install') {
-            agent {
-                docker {
-                    image 'node:18.10-alpine'
-                }
-            }
+            
 			steps {
                 sh 'npm install'
                 sh 'npm install -g @angular/cli@1.0.2'
