@@ -5,7 +5,6 @@ pipeline {
             agent {
                 docker {
                     image 'node:18.10-alpine'
-                    args '-v $HOME:/home/jenkins'
                 }
             }
 			steps {
