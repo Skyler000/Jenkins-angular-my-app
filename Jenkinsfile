@@ -1,34 +1,25 @@
 pipeline { 
-    agent any
-    // environment { 
-	// 	PATH='/usr/local/bin:/usr/bin:/bin'
-	// }
+    agent { docker { image 'node:18.10-alpine' } }
+    environment {
+        HOME = '.'
+    }
 	stages {
-		stage('NPM install') {
-            // agent {
-            //     docker {
-            //         image 'node:18.10-alpine'
-            //         /var/lib/jenkins/workspace/my-first-angular-project
-            //     }
-            // }
-            docker.image('bitnami/php-fpm:latest').inside("-e COMPOSER_HOME=/tmp/jenkins-workspace") {
-    			steps {
-                    sh 'npm install'
-                    sh 'npm install -g @angular/cli@1.0.2'
-                    sh 'ng --version'
-			        // sh 'docker rmi -f my-app:v1 || true'
-			        // sh 'docker build -t my-app:v1 ./Dockerfile .'
-			    }
-            }
-		}
         stage('Checkout') {
-              //disable to recycle workspace data to save time/bandwidth
             steps {
                 deleteDir()
                 checkout scm
             }
         }
-    }
+		stage('NPM install') {
+    		steps {
+                sh 'npm install'
+                sh 'npm install -g @angular/cli@1.0.2'
+                sh 'ng --version'
+		        // sh 'docker rmi -f my-app:v1 || true'
+		        // sh 'docker build -t my-app:v1 ./Dockerfile .'
+		    }
+        } 
+    }       
     	// stage('Deploy') {
 		// 	steps {
 		// 		 sh 'docker stop my-app || true'
