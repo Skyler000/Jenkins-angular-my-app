@@ -8,6 +8,12 @@ pipeline {
                 args '-v $HOME:/home/jenkins'
                 }
             }
+            stage('Checkout') {
+               //disable to recycle workspace data to save time/bandwidth
+                steps{
+                deleteDir()
+                checkout scm
+            }
 			steps {
                 sh 'npm install'
                 sh 'npm install -g @angular/cli@1.0.2'
