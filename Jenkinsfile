@@ -1,5 +1,5 @@
 pipeline { 
-	agent docker {'node:18.10-alpine'}
+	agent any
 	stages {
 		stage('NPM install') {
             // agent {
