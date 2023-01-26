@@ -8,12 +8,6 @@ pipeline {
                 args '-v $HOME:/home/jenkins'
                 }
             }
-            stage('Checkout') {
-               //disable to recycle workspace data to save time/bandwidth
-                steps{
-                deleteDir()
-                checkout scm
-            }
 			steps {
                 sh 'npm install'
                 sh 'npm install -g @angular/cli@1.0.2'
@@ -22,7 +16,15 @@ pipeline {
 			    // sh 'docker build -t my-app:v1 ./Dockerfile .'
 			}
 		}
-		// stage('Deploy') {
+        stage('Checkout') {
+              //disable to recycle workspace data to save time/bandwidth
+            steps {
+                deleteDir()
+                checkout scm
+            }
+        }
+    }
+    	// stage('Deploy') {
 		// 	steps {
 		// 		 sh 'docker stop my-app || true'
         //          sh 'docker rm my-app || true'
@@ -30,7 +32,7 @@ pipeline {
 		// 	}
 			 
 		// }
-	 }
+	
 	 post { 
 		always {
 			echo 'Im awesome . I run always'
