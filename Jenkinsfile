@@ -13,6 +13,7 @@ pipeline {
 		stage('NPM install') {
     		steps {
                 sh 'npm install'
+                sh 'npm cache clean -f'
                 sh 'npm install -g @angular/cli@1.0.2'
                 sh 'ng --version'
 		        // sh 'docker rmi -f my-app:v1 || true'
