@@ -4,12 +4,12 @@ pipeline {
         HOME = '.'
     }
 	stages {
-        stage('Checkout') {
-            steps {
-                deleteDir()
-                checkout scm
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         deleteDir()
+        //         checkout scm
+        //     }
+        // }
 		stage('NPM install') {
     		steps {
                 sh 'npm install'
