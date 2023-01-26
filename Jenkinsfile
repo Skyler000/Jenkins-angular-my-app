@@ -1,5 +1,9 @@
 pipeline { 
 	agent any
+    environment { 
+		dockerHome = tool 'MyDocker'
+		PATH = "$dockerHome/bin:$PATH"
+	}
 	stages {
 		stage('NPM install') {
             agent {
