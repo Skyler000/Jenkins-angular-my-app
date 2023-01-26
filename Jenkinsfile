@@ -3,9 +3,9 @@ pipeline {
 	stages {
 		stage('NPM install') {
             agent {
-            docker {
-                image 'node:18.10-alpine'
-                args '-v $HOME:/home/jenkins'
+                docker {
+                    image 'node:18.10-alpine'
+                    // args '-v $HOME:/home/jenkins'
                 }
             }
 			steps {
